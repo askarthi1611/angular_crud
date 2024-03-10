@@ -1,0 +1,112 @@
+<div class="table_section" *ngIf="tablePage">
+  <mat-form-field appearance="outline">
+    <mat-label>Filter</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Ex. Mia"
+      #input
+    />
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- ID Column -->
+      <ng-container matColumnDef="StudentId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let row">{{ row.StudentId }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let row">{{ row.Name }}</td>
+      </ng-container>
+
+      <!-- Roll Column -->
+      <ng-container matColumnDef="Roll">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Roll</th>
+        <td mat-cell *matCellDef="let row">{{ row.Roll }}</td>
+      </ng-container>
+
+      <!-- DOB Column -->
+      <ng-container matColumnDef="Birthday">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>DOB</th>
+        <td mat-cell *matCellDef="let row">{{ row.Birthday }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">
+          No data matching the filter "{{ input.value }}"
+        </td>
+      </tr>
+    </table>
+
+    <mat-paginator
+      #MatPaginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of users"
+    ></mat-paginator>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="themebtn" style="text-align: end;">
+        <button mat-button color="primary" class="primary" (click)="gotocreateuser()">Create page</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="createPage" *ngIf="!tablePage">
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+      <mat-form-field appearance="outline">
+        <mat-label>ID</mat-label>
+        <input matInput [(ngModel)]="newObj.StudentId" placeholder="1"/>
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="newObj.Name" placeholder="Karthikeyan"/>
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+      <mat-form-field appearance="outline">
+        <mat-label>Roll No</mat-label>
+        <input matInput [(ngModel)]="newObj.Roll" placeholder="1"/>
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+      <mat-form-field appearance="outline">
+        <mat-label>D.O.B</mat-label>
+        <input matInput [(ngModel)]="newObj.Birthday" placeholder="16/11/1999"/>
+      </mat-form-field>
+    </div>
+    <div class="col-12">
+      <div class="themebtn" style="text-align: end;">
+        <button mat-button color="primary" class="primary" #createUserbtn (click)="createuser(newObj,createUserbtn)">Create</button>
+      </div>
+    </div>
+    <div class="col-12">
+       <ul class="data_preview_new">
+        <li>
+          <div class="data_li_new"><div>StudentId</div><div>:{{newObj.StudentId}}</div></div>
+        </li>
+        <li>
+          <div class="data_li_new"><div>Name</div><div>:{{newObj.Name}}</div></div>
+        </li>
+        <li>
+          <div class="data_li_new"><div>Roll</div><div>:{{newObj.Roll}}</div></div>
+        </li>
+        <li>
+          <div class="data_li_new"><div>D.O.B</div><div>:{{newObj.Birthday}}</div></div>
+        </li>
+       </ul>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
