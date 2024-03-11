@@ -7,8 +7,8 @@ import { Injectable } from '@angular/core';
 })
 export class AppService {
 
-  // private apiUrl = 'https://ask01.onrender.com/api';
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = 'https://ask01.onrender.com/api';
+  // private apiUrl = 'http://localhost:3000/api';
   
   constructor(private http: HttpClient) {}
   
