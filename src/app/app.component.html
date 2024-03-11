@@ -37,7 +37,7 @@
 
       <ng-container matColumnDef="Action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
-        <td mat-cell *matCellDef="let row"><button (click)="Updatepage(row)">Update</button><button (click)="deleteResource(row.StudentId)">Delete</button></td>
+        <td mat-cell *matCellDef="let row"><button class="btn btn-primary mr-3" (click)="Updatepage(row)">Update</button><button class="btn btn-danger" (click)="deleteResource(row.StudentId)">Delete</button></td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -93,10 +93,10 @@
     </div>
     <div class="col-12">
       <div class="themebtn" style="text-align: end;">
-        <button *ngIf="!UpdatePage" mat-button color="primary" class="primary" #createUserbtn (click)="createuser(newObj,createUserbtn)">
+        <button *ngIf="!UpdatePage" mat-button color="primary" class="btn btn-success" #createUserbtn (click)="createuser(newObj,createUserbtn)">
         <span >Create</span>
         </button>
-        <button *ngIf="UpdatePage" mat-button color="primary" class="primary" #UpdateUserbtn (click)="updateuser(newObj,UpdateUserbtn)">
+        <button *ngIf="UpdatePage" mat-button color="primary" class="btn btn-success" #UpdateUserbtn (click)="updateuser(newObj,UpdateUserbtn)">
         <span >Update</span>
         </button>
       </div>

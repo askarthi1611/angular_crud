@@ -18,3 +18,18 @@ ul li{
 ul{
     padding: 0;
 }
+.mat-mdc-table tbody, .mat-mdc-table tfoot, .mat-mdc-table thead, .mat-mdc-cell, .mat-mdc-footer-cell, .mat-mdc-header-row, .mat-mdc-row, .mat-mdc-footer-row,body,.mat-mdc-paginator{
+    background-color: #3e3e3e !important;
+    color: #f5f5f5 !important;
+}
+table th.mdc-data-table__header-cell{
+    background-color: #5e3838!important;
+    color: #fff !important;
+
+}
+* :focus{
+    box-shadow: none !important;
+}
+.mat-mdc-floating-label,.mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-text-field__input,.mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-text-field__input::placeholder{
+    color: #f5f5f5 !important;
+}
