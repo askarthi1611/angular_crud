@@ -8,8 +8,14 @@
       #input
     />
   </mat-form-field>
-
-  <div class="mat-elevation-z8">
+  <div class="row">
+    <div class="col-12 mb-3">
+      <div class="themebtn" style="text-align: end;">
+        <button mat-button color="primary" class="btn btn-success" (click)="gotocreateuser()">Create page</button>
+      </div>
+    </div>
+  </div>
+  <div class="mat-elevation-z8 table-wraapper">
     <table mat-table [dataSource]="dataSource" matSort>
       <!-- ID Column -->
       <ng-container matColumnDef="StudentId">
@@ -35,9 +41,9 @@
         <td mat-cell *matCellDef="let row">{{ row.Birthday }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="Action">
+      <ng-container matColumnDef="Action" stickyEnd>
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
-        <td mat-cell *matCellDef="let row"><button class="btn btn-primary mr-3" (click)="Updatepage(row)">Update</button><button class="btn btn-danger" (click)="deleteResource(row.StudentId)">Delete</button></td>
+        <td mat-cell *matCellDef="let row"><div class="action_td"><button class="btn btn-primary mr-3" (click)="Updatepage(row)">Update</button><button class="btn btn-danger" (click)="deleteResource(row.StudentId)">Delete</button></div></td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -51,19 +57,13 @@
       </tr>
     </table>
 
-    <mat-paginator
-      #MatPaginator
-      [pageSizeOptions]="[5, 10, 25, 100]"
-      aria-label="Select page of users"
-    ></mat-paginator>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <div class="themebtn" style="text-align: end;">
-        <button mat-button color="primary" class="primary" (click)="gotocreateuser()">Create page</button>
-      </div>
-    </div>
-  </div>
+  <mat-paginator
+    #MatPaginator
+    [pageSizeOptions]="[10, 15, 25, 100]"
+    aria-label="Select page of users"
+  ></mat-paginator>
+
 </div>
 <div class="createPage" *ngIf="!tablePage">
   <div class="row">
@@ -93,6 +93,9 @@
     </div>
     <div class="col-12">
       <div class="themebtn" style="text-align: end;">
+        <button mat-button color="primary" class="btn btn-secondary" style="margin-right: 10px;" (click)="backtopage()">
+        <span >Back</span>
+        </button>
         <button *ngIf="!UpdatePage" mat-button color="primary" class="btn btn-success" #createUserbtn (click)="createuser(newObj,createUserbtn)">
         <span >Create</span>
         </button>
@@ -103,13 +106,13 @@
     </div>
     <div class="col-12">
        <ul class="data_preview_new">
-        <li *ngIf="newObj.StudentId.length">
+        <li *ngIf="newObj.StudentId>0">
           <div class="data_li_new"><div>StudentId</div><div>:{{newObj.StudentId}}</div></div>
         </li>
         <li *ngIf="newObj.Name.length">
           <div class="data_li_new"><div>Name</div><div>:{{newObj.Name}}</div></div>
         </li>
-        <li *ngIf="newObj.Roll.length">
+        <li *ngIf="newObj.Roll>0">
           <div class="data_li_new"><div>Roll</div><div>:{{newObj.Roll}}</div></div>
         </li>
         <li *ngIf="newObj.Birthday.length">

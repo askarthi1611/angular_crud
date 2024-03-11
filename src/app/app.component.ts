@@ -42,6 +42,7 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngOnInit() {}
+  
 
   getDataFromApi() {
     this.newObj={
@@ -55,6 +56,10 @@ export class AppComponent implements AfterViewInit {
         this.users = result;
         console.log('users from API:', this.users);
         this.dataSource = new MatTableDataSource(this.users);
+        setTimeout(() => {
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }, 1000);
       },
       (error: any) => {
         console.error('Error fetching data:', error);
@@ -62,8 +67,10 @@ export class AppComponent implements AfterViewInit {
     );
   }
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    setTimeout(() => {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }, 1000);
   }
 
   applyFilter(event: Event) {
@@ -140,17 +147,12 @@ export class AppComponent implements AfterViewInit {
       }
       Updatepage(row:any){
         this.UpdatePage=true
-        console.log(row);
         this.newObj=row;
         this.tablePage=false;
-        console.log(this.newObj);
-        // this.myApiService.UpdateData(this.newObj).subscribe(
-        //   (result: any) => {
-        //     this.getDataFromApi();
-        //   },
-        //   (error: any) => {
-        //     this.getDataFromApi();
-        //   }
-        // );
+      }
+      backtopage(){
+        this.tablePage=true;
+        this.getDataFromApi();
+
       }
 }

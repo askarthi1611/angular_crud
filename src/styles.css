@@ -25,11 +25,26 @@ ul{
 table th.mdc-data-table__header-cell{
     background-color: #5e3838!important;
     color: #fff !important;
-
+    position: sticky;
+    top: 0;
+    z-index: 99999 !important;
 }
 * :focus{
     box-shadow: none !important;
 }
 .mat-mdc-floating-label,.mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-text-field__input,.mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-text-field__input::placeholder{
     color: #f5f5f5 !important;
+}
+.table-wraapper{
+    overflow: auto;
+    height: calc(100vh - 300px);
+}
+.mat-mdc-icon-button svg {
+    vertical-align: baseline;
+    background-color: #ada9e5;
+    border-radius: 19%;
+    color: #f5f5f5 !important;
+}
+.mat-mdc-paginator .mat-mdc-select-value,.mat-mdc-select-arrow svg{
+    color: #fff !important;
 }
