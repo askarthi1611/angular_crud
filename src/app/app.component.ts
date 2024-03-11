@@ -21,14 +21,15 @@ export interface UserData {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements AfterViewInit {
-  displayedColumns: string[] = ['StudentId', 'Name', 'Roll', 'Birthday'];
+  displayedColumns: string[] = ['StudentId', 'Name', 'Roll', 'Birthday','Action'];
   dataSource: MatTableDataSource<UserData> | any;
   title = 'ang_crud';
   users: any;
+  UpdatePage: any = false;
   tablePage: any = true;
   @ViewChild('MatPaginator') paginator: any;
   @ViewChild(MatSort) sort: any;
-  newObj = {
+  newObj :any= {
     StudentId: '',
     Name: '',
     Roll: '',
@@ -43,6 +44,12 @@ export class AppComponent implements AfterViewInit {
   ngOnInit() {}
 
   getDataFromApi() {
+    this.newObj={
+      StudentId: '',
+      Name: '',
+      Roll: '',
+      Birthday: '',
+    };
     this.myApiService.getData().subscribe(
       (result: any) => {
         this.users = result;
@@ -69,6 +76,7 @@ export class AppComponent implements AfterViewInit {
   }
   gotocreateuser() {
     this.tablePage = false;
+    this.UpdatePage=false
   }
   createuser(data: any, e: any) {
     if (
@@ -91,4 +99,58 @@ export class AppComponent implements AfterViewInit {
       e.style.background = 'red';
     }
   }
+  updateuser(data: any, e: any) {
+    if (
+      this.newObj.StudentId > 0 &&
+      this.newObj.Roll > 0 &&
+      this.newObj.Name.length > 0 &&
+      this.newObj.Birthday.length > 0
+    ) {
+      console.log(this.newObj);
+      this.myApiService.UpdateData(this.newObj).subscribe(
+        (result: any) => {
+          this.getDataFromApi();
+        },
+        (error: any) => {
+          this.getDataFromApi();
+        }
+      );
+      e.style.background = 'green';
+      this.tablePage = true;
+    } else {
+      e.style.background = 'red';
+    }
+  }
+  deleteResource(id: number): void {
+    this.myApiService.deleteResource(id)
+      .subscribe(
+        () => {
+          console.log('Resource deleted successfully');
+          // Handle success, if needed
+          this.getDataFromApi();
+
+        },
+        (error: any) => {
+          console.error('Error deleting resource:', error);
+          // Handle error, if needed
+          this.getDataFromApi();
+
+        }
+      );
+      }
+      Updatepage(row:any){
+        this.UpdatePage=true
+        console.log(row);
+        this.newObj=row;
+        this.tablePage=false;
+        console.log(this.newObj);
+        // this.myApiService.UpdateData(this.newObj).subscribe(
+        //   (result: any) => {
+        //     this.getDataFromApi();
+        //   },
+        //   (error: any) => {
+        //     this.getDataFromApi();
+        //   }
+        // );
+      }
 }
