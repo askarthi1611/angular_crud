@@ -8,3 +8,27 @@
     display: flex;
     gap: 5px;
 }
+.createPage{
+    width: 50%;
+    margin: auto;
+}
+@media screen and (max-width:991px) {
+    .createPage{
+        width: 100%;
+    }
+}
+.Header_div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+@media screen and (max-width:500px) {
+    .Header_div{
+        flex-direction: column-reverse;
+        justify-content: end;
+    }
+    button.btn.btn-info.themechangebtn {
+        margin-left: auto;
+    }
+}

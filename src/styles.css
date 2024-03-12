@@ -19,32 +19,47 @@ ul{
     padding: 0;
 }
 .mat-mdc-table tbody, .mat-mdc-table tfoot, .mat-mdc-table thead, .mat-mdc-cell, .mat-mdc-footer-cell, .mat-mdc-header-row, .mat-mdc-row, .mat-mdc-footer-row,body,.mat-mdc-paginator{
+    background-color: #f5f5f5 !important;
+    color: #3e3e3e !important;
+}
+.darkbg .mat-mdc-table tbody, .darkbg .mat-mdc-table tfoot, .darkbg .mat-mdc-table thead, .darkbg .mat-mdc-cell, .darkbg .mat-mdc-footer-cell, .darkbg .mat-mdc-header-row, .darkbg .mat-mdc-row, .darkbg .mat-mdc-footer-row,body.darkbg,.darkbg .mat-mdc-paginator{
     background-color: #3e3e3e !important;
     color: #f5f5f5 !important;
 }
 table th.mdc-data-table__header-cell{
-    background-color: #5e3838!important;
+    background-color: #3e3e3e!important;
     color: #fff !important;
     position: sticky;
     top: 0;
     z-index: 99999 !important;
 }
+.darkbg table th.mdc-data-table__header-cell{
+    background-color: #8ed0c7 !important;
+    color: #3e3e3e !important;
+}
 * :focus{
     box-shadow: none !important;
 }
-.mat-mdc-floating-label,.mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-text-field__input,.mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-text-field__input::placeholder{
+.darkbg .mat-mdc-floating-label,.darkbg .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-text-field__input{
     color: #f5f5f5 !important;
+}
+.darkbg .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-text-field__input::placeholder{
+    color: #bbbbbb55 !important;
 }
 .table-wraapper{
     overflow: auto;
-    height: calc(100vh - 300px);
+    min-height: 320px;
+    height: calc(100vh - 600px);
 }
-.mat-mdc-icon-button svg {
+.darkbg .mat-mdc-icon-button svg {
     vertical-align: baseline;
     background-color: #ada9e5;
     border-radius: 19%;
     color: #f5f5f5 !important;
 }
-.mat-mdc-paginator .mat-mdc-select-value,.mat-mdc-select-arrow svg{
+.darkbg .mat-mdc-paginator .mat-mdc-select-value,.mat-mdc-select-arrow svg{
     color: #fff !important;
+}
+.action_td button{
+    width: fit-content !important;
 }

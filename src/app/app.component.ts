@@ -153,6 +153,17 @@ export class AppComponent implements AfterViewInit {
       backtopage(){
         this.tablePage=true;
         this.getDataFromApi();
-
+      }
+      themechange(e:any){
+        let body :any = document.querySelector('body')
+        console.log(e.innerText,e.innerHTML,e);
+        if (body.className=="darkbg") {
+          body.className=""
+          e.innerText="Dark"
+        }else{
+          e.innerText="Light"
+          body.className="darkbg"
+        }
+        
       }
 }

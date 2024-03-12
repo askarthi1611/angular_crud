@@ -1,20 +1,19 @@
+<div class="Header_div">
+  <h1>MEAN - CRUD Operation</h1>
+  <button color="primary" class="btn btn-info themechangebtn" #themechangebtn (click)="themechange(themechangebtn)">
+    Dark
+  </button>
+</div>
 <div class="table_section" *ngIf="tablePage">
   <mat-form-field appearance="outline">
     <mat-label>Filter</mat-label>
-    <input
-      matInput
-      (keyup)="applyFilter($event)"
-      placeholder="Ex. Mia"
-      #input
-    />
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input />
   </mat-form-field>
-  <div class="row">
-    <div class="col-12 mb-3">
-      <div class="themebtn" style="text-align: end;">
-        <button mat-button color="primary" class="btn btn-success" (click)="gotocreateuser()">Create page</button>
-      </div>
-    </div>
+
+  <div class="themebtn mb-3" style="text-align: end;">
+    <button mat-button color="primary" class="btn btn-success" (click)="gotocreateuser()">Create page</button>
   </div>
+
   <div class="mat-elevation-z8 table-wraapper">
     <table mat-table [dataSource]="dataSource" matSort>
       <!-- ID Column -->
@@ -42,8 +41,11 @@
       </ng-container>
 
       <ng-container matColumnDef="Action" stickyEnd>
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
-        <td mat-cell *matCellDef="let row"><div class="action_td"><button class="btn btn-primary mr-3" (click)="Updatepage(row)">Update</button><button class="btn btn-danger" (click)="deleteResource(row.StudentId)">Delete</button></div></td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center;width: 120px;">Action</th>
+        <td mat-cell *matCellDef="let row">
+          <div class="action_td"><button class="btn btn-primary mr-3" (click)="Updatepage(row)">Update</button><button
+              class="btn btn-danger" (click)="deleteResource(row.StudentId)">Delete</button></div>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -58,67 +60,78 @@
     </table>
 
   </div>
-  <mat-paginator
-    #MatPaginator
-    [pageSizeOptions]="[10, 15, 25, 100]"
-    aria-label="Select page of users"
-  ></mat-paginator>
+  <mat-paginator #MatPaginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
 
 </div>
 <div class="createPage" *ngIf="!tablePage">
+  <h1>{{UpdatePage?'Update':'Create'}} User</h1>
   <div class="row">
-    <div class="col-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
       <mat-form-field appearance="outline">
         <mat-label>ID</mat-label>
-        <input matInput [(ngModel)]="newObj.StudentId" placeholder="1"/>
+        <input matInput [(ngModel)]="newObj.StudentId" placeholder="1" />
       </mat-form-field>
     </div>
-    <div class="col-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
       <mat-form-field appearance="outline">
         <mat-label>Name</mat-label>
-        <input matInput [(ngModel)]="newObj.Name" placeholder="Karthikeyan"/>
+        <input matInput [(ngModel)]="newObj.Name" placeholder="Karthikeyan" />
       </mat-form-field>
     </div>
-    <div class="col-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
       <mat-form-field appearance="outline">
         <mat-label>Roll No</mat-label>
-        <input matInput [(ngModel)]="newObj.Roll" placeholder="1"/>
+        <input matInput [(ngModel)]="newObj.Roll" placeholder="1" />
       </mat-form-field>
     </div>
-    <div class="col-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 mt-3">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
       <mat-form-field appearance="outline">
         <mat-label>D.O.B</mat-label>
-        <input matInput [(ngModel)]="newObj.Birthday" placeholder="16/11/1999"/>
+        <input matInput [(ngModel)]="newObj.Birthday" placeholder="16/11/1999" />
       </mat-form-field>
     </div>
     <div class="col-12">
       <div class="themebtn" style="text-align: end;">
         <button mat-button color="primary" class="btn btn-secondary" style="margin-right: 10px;" (click)="backtopage()">
-        <span >Back</span>
+          <span>Back</span>
         </button>
-        <button *ngIf="!UpdatePage" mat-button color="primary" class="btn btn-success" #createUserbtn (click)="createuser(newObj,createUserbtn)">
-        <span >Create</span>
+        <button *ngIf="!UpdatePage" mat-button color="primary" class="btn btn-success" #createUserbtn
+          (click)="createuser(newObj,createUserbtn)">
+          <span>Create</span>
         </button>
-        <button *ngIf="UpdatePage" mat-button color="primary" class="btn btn-success" #UpdateUserbtn (click)="updateuser(newObj,UpdateUserbtn)">
-        <span >Update</span>
+        <button *ngIf="UpdatePage" mat-button color="primary" class="btn btn-success" #UpdateUserbtn
+          (click)="updateuser(newObj,UpdateUserbtn)">
+          <span>Update</span>
         </button>
       </div>
     </div>
     <div class="col-12">
-       <ul class="data_preview_new">
+      <ul class="data_preview_new">
         <li *ngIf="newObj.StudentId>0">
-          <div class="data_li_new"><div>StudentId</div><div>:{{newObj.StudentId}}</div></div>
+          <div class="data_li_new">
+            <div>StudentId</div>
+            <div>:{{newObj.StudentId}}</div>
+          </div>
         </li>
         <li *ngIf="newObj.Name.length">
-          <div class="data_li_new"><div>Name</div><div>:{{newObj.Name}}</div></div>
+          <div class="data_li_new">
+            <div>Name</div>
+            <div>:{{newObj.Name}}</div>
+          </div>
         </li>
         <li *ngIf="newObj.Roll>0">
-          <div class="data_li_new"><div>Roll</div><div>:{{newObj.Roll}}</div></div>
+          <div class="data_li_new">
+            <div>Roll</div>
+            <div>:{{newObj.Roll}}</div>
+          </div>
         </li>
         <li *ngIf="newObj.Birthday.length">
-          <div class="data_li_new"><div>D.O.B</div><div>:{{newObj.Birthday}}</div></div>
+          <div class="data_li_new">
+            <div>D.O.B</div>
+            <div>:{{newObj.Birthday}}</div>
+          </div>
         </li>
-       </ul>
+      </ul>
     </div>
   </div>
 </div>
