@@ -7,8 +7,8 @@ import { Injectable } from '@angular/core';
 })
 export class AppService {
 
-  private apiUrl = 'https://ask01.onrender.com/api';
-  // private apiUrl = 'http://localhost:3000/api';
+  // private apiUrl = 'https://ask01.onrender.com/api';
+  private apiUrl = 'http://localhost:3000/api';
   
   constructor(private http: HttpClient) {}
   
@@ -18,6 +18,10 @@ export class AppService {
   postData(data: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<any>(`${this.apiUrl}/save`, data, { headers });
+  }
+  postpdfData(data: any): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(`${this.apiUrl}/savepdf`, data, { headers });
   }
   // UpdateData(data: any): Observable<any> {
   //   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });

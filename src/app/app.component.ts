@@ -5,6 +5,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppService } from './app.service';
+import { DomSanitizer} from '@angular/platform-browser';
 
 export interface UserData {
   _id: string;
@@ -29,14 +30,16 @@ export class AppComponent implements AfterViewInit {
   tablePage: any = true;
   @ViewChild('MatPaginator') paginator: any;
   @ViewChild(MatSort) sort: any;
+  iframetab:any=false;
+  src:any;
   newObj :any= {
     StudentId: '',
     Name: '',
     Roll: '',
     Birthday: '',
   };
-
-  constructor(private myApiService: AppService) {
+  PDFGEN:any=false;
+  constructor(private myApiService: AppService,private domSanitizer: DomSanitizer) {
     this.getDataFromApi();
     // Assign the data to the data source for the table to render
   }
@@ -105,6 +108,18 @@ export class AppComponent implements AfterViewInit {
     } else {
       e.style.background = 'red';
     }
+  }
+  print(data:any){
+    this.myApiService.postpdfData(data).subscribe(
+      (result: any) => {
+        this.src=this.domSanitizer.bypassSecurityTrustResourceUrl("data:application/pdf;base64,"+result.base64);
+        console.log(this.src);
+        this.iframetab=true;
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
   }
   updateuser(data: any, e: any) {
     if (

@@ -135,4 +135,45 @@
     </div>
   </div>
 </div>
+<div class="createPage" *ngIf="PDFGEN">
+  <h1>PDF User</h1>
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+      <mat-form-field appearance="outline">
+        <mat-label>ID</mat-label>
+        <input matInput [(ngModel)]="newObj.StudentId" placeholder="1" />
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="newObj.Name" placeholder="Karthikeyan" />
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+      <mat-form-field appearance="outline">
+        <mat-label>Roll No</mat-label>
+        <input matInput [(ngModel)]="newObj.Roll" placeholder="1" />
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mt-3">
+      <mat-form-field appearance="outline">
+        <mat-label>D.O.B</mat-label>
+        <input matInput [(ngModel)]="newObj.Birthday" placeholder="16/11/1999" />
+      </mat-form-field>
+    </div>
+    <div class="col-12">
+      <div class="themebtn" style="text-align: end;">
+        <button mat-button color="primary" class="btn btn-secondary" style="margin-right: 10px;"
+          (click)="print(newObj)">
+          <span>Print</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- <iframe [src]="src"  *ngIf="iframetab" frameborder="0"></iframe> -->
+  <a [href]="src" download="filename.pdf" *ngIf="iframetab">DoWnload</a>
+  <embed id="pdfID" *ngIf="iframetab" type="text/html" width="1200" height="600" [src]="src" />
+</div>
+
 <router-outlet></router-outlet>
