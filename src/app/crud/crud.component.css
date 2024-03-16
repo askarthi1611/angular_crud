@@ -1,0 +1,26 @@
+.data_li_new{
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    gap: 5px;
+}
+.action_td{
+    display: flex;
+    gap: 5px;
+}
+
+.Header_div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+@media screen and (max-width:500px) {
+    .Header_div{
+        flex-direction: column-reverse;
+        justify-content: end;
+    }
+    button.btn.btn-info.themechangebtn {
+        margin-left: auto;
+    }
+}

@@ -1,11 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AppService {
+export class CrudService {
 
   // private apiUrl = 'https://ask01.onrender.com/api';
   private apiUrl = 'http://localhost:3000/api';

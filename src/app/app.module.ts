@@ -11,9 +11,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { AppService } from './app.service';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
+import { PdfComponent } from './pdf/pdf.component';
+import { CrudComponent } from './crud/crud.component'; 
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PdfComponent, CrudComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -21,9 +27,11 @@ import { FormsModule } from '@angular/forms';
     MatTableModule,
     MatPaginatorModule,
     MatSelectModule,
-    MatFormFieldModule,
+    MatFormFieldModule,MatNativeDateModule,
     MatInputModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(), // ToastrModule added
+    MatDatepickerModule,
     NoopAnimationsModule,
     AppRoutingModule,
   ],

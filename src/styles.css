@@ -1,3 +1,6 @@
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import 'ngx-toastr/toastr';
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
@@ -62,4 +65,17 @@ table th.mdc-data-table__header-cell{
 }
 .action_td button{
     width: fit-content !important;
+}
+.createPage{
+    width: 50%;
+    margin: auto;
+}
+@media screen and (max-width:991px) {
+    .createPage{
+        width: 100%;
+    }
+}
+.toast-container .ngx-toastr{
+    width: 99vw;
+    text-align: center;
 }
