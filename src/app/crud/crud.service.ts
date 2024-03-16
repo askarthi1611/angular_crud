@@ -7,8 +7,8 @@ import { Observable, catchError, throwError } from 'rxjs';
 })
 export class CrudService {
 
-  // private apiUrl = 'https://ask01.onrender.com/api';
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = 'https://ask01.onrender.com/api';
+  // private apiUrl = 'http://localhost:3000/api';
   
   constructor(private http: HttpClient) {}
   
