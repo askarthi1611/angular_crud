@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Bingo Card Generator</title>
+  <style>
+    /* Add your CSS styles here */
+    .bingo-card {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 5px;
+      width: 300px;
+    }
+
+    .number-cell {
+      width: 50px;
+      height: 50px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .marked::after,
+    .marked::before {
+      content: " ";
+      height: 40px;
+      top: 5px;
+      width: 1px;
+      background: red;
+    }
+
+    .marked::after {
+      right: 25px;
+      rotate: 45deg;
+      position: absolute;
+    }
+
+    .marked::before {
+      rotate: 133deg;
+      position: absolute;
+      left: 25px;
+    }
+
+    .marked {
+      pointer-events: none;
+      background-color: #ccc !important;
+    }
+    .green-cell::after,.green-cell::before{
+      content: none !important;
+    }
+    .green-cell {
+      background-color: #21e021 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Random Bingo Card Generator</h1>
+  <div class="bingo-card" id="bingo-card">
+    <!-- Bingo card numbers will be generated dynamically here -->
+  </div>
+  <button onclick="generateBingoCard()">Generate Bingo Card</button>
+
+  <script>
+    // setInterval(() => {
+    //   checkForWin();
+    // }, 1000);
+    // JavaScript code for generating a random Bingo card
+    function generateBingoCard() {
+      const cardNumbers = generateUniqueNumbers(1, 25, 25); // Generate 25 unique random numbers
+      const bingoCard = document.getElementById('bingo-card');
+
+      // Clear previous card cells
+      bingoCard.innerHTML = '';
+
+      // Populate the Bingo card with generated numbers
+      for (let i = 0; i < 25; i++) {
+        const cell = document.createElement('div');
+        cell.classList.add('number-cell');
+        cell.dataset.index = i + 1;
+        cell.textContent = cardNumbers[i];
+        cell.addEventListener('click', function () { markNumber(cell); });
+        bingoCard.appendChild(cell);
+      }
+    }
+    // Function to mark a number on the Bingo card
+    let selected = []
+    function markNumber(cell) {
+      // alert(cell.dataset.index)
+      selected.push(cell.dataset.index * 1)
+      cell.classList.add('marked');
+      checkForWin();
+    }
+
+    const winningCombinations = [
+      [1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25], // Rows
+      [1, 6, 11, 16, 21], [2, 7, 12, 17, 22], [3, 8, 13, 18, 23], [4, 9, 14, 19, 24], [5, 10, 15, 20, 25], // Columns
+      [1, 7, 13, 19, 25], [5, 9, 13, 17, 21] // Diagonals
+    ];
+
+    // Function to check for a winning combination
+    function checkForWin() {
+      for (const combination of winningCombinations) {
+        const isWin = combination.every(number => selected.includes(number));
+        if (isWin) {
+          console.log(combination);
+          combination.map((e, l) => {
+            let doc = document.querySelectorAll('.number-cell')
+            doc.forEach((elem) => {
+              console.log(elem, elem.dataset.index);
+              if (e == elem.dataset.index * 1) {
+                elem.classList.add('green-cell');
+                console.log(e, elem);
+              }
+            })
+          })
+          return;
+        }
+      }
+      // alert('No Bingo yet. Keep playing!');
+    }
+
+    // Function to generate an array of unique random numbers
+    function generateUniqueNumbers(min, max, count) {
+      const numbers = [];
+      while (numbers.length < count) {
+        const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+        if (!numbers.includes(randomNumber)) {
+          numbers.push(randomNumber);
+        }
+      }
+      return numbers;
+    }
+  </script>
+</body>
+
+</html>

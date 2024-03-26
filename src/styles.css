@@ -79,3 +79,27 @@ table th.mdc-data-table__header-cell{
     width: 99vw;
     text-align: center;
 }
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #3e3e3e;
+    border-radius: 10px;
+  }
+  .darkbg::-webkit-scrollbar-thumb,.darkbg *::-webkit-scrollbar-thumb {
+    background: #f5f5f5;
+  }
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b30000; 
+  }
